@@ -1,0 +1,18 @@
+import wollok.game.*
+import elementos.*
+
+program picross {
+	game.title("Picross")
+	game.height(20)
+	game.width(20)
+	game.boardGround("fondo.png")
+	game.cellSize(20)
+	game.addVisualCharacter(puntero)
+	
+	
+	
+	keyboard.c().onPressDo{ puntero.pintar()}
+	keyboard.x().onPressDo{ puntero.descartar()}
+	
+	game.start()
+}
