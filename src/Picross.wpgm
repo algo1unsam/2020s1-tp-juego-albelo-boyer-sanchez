@@ -1,18 +1,21 @@
 import wollok.game.*
 import elementos.*
+import menu.*
 
 program picross {
 	game.title("Picross")
 	game.height(20)
 	game.width(20)
-	game.boardGround("fondo.png")
 	game.cellSize(20)
-	game.addVisualCharacter(puntero)
-	
+	game.boardGround("portada.png")
 	
 	
 	keyboard.c().onPressDo{ puntero.pintar()}
 	keyboard.x().onPressDo{ puntero.descartar()}
+	keyboard.enter().onPressDo{ game.addVisual(niveles)}
+	keyboard.num1().onPressDo{ game.addVisual(figura1)}
+	keyboard.num2().onPressDo{ game.addVisual(figura2)}
+	keyboard.num3().onPressDo{ game.addVisual(figura3)}
 	
 	game.start()
 }
