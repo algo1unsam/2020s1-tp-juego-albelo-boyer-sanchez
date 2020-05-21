@@ -9,7 +9,7 @@ program picross {
 	game.cellSize(20)
 	game.boardGround("portada.png")
 	
-	
+	//TECLADO
 	keyboard.c().onPressDo{ puntero.pintar()}
 	keyboard.x().onPressDo{ puntero.descartar()}
 	keyboard.enter().onPressDo{ game.addVisual(niveles)}
