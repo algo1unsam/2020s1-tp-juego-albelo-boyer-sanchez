@@ -162,9 +162,15 @@ class CasillaCruz{
 	}
 }
 
-class Tilde{
+class TildeLargo{
 	method image(){
-		return "tilde.png"
+		return "tildeL.png"
+	}
+}
+
+class TildeAltura{
+	method image(){
+		return "tildeA.png"
 	}
 }
 
@@ -206,6 +212,13 @@ object cartel2{
 object cartel3{
 	method image() {
 	return "cartel3.png"
+	
+	}
+}
+
+object cartel4{
+	method image() {
+	return "cartel4.png"
 	
 	}
 }

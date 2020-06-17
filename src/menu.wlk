@@ -11,6 +11,9 @@ class Tablero{
 		if (self.verificar()){
 			game.addVisualIn(new CasillaOscura(), puntero.position())
 			self.quitarDeLaLista()
+			const x = puntero.position().x()
+			const y = puntero.position().y()
+			self.agregarTilde(x, y)
 			self.consultarLista()
 			
 		}else{
@@ -21,6 +24,10 @@ class Tablero{
 		}
 	}
 	
+	method comprobarLargo(x)
+	
+	method comprobarAltura(y)
+	
 	method quitarDeLaLista(){
 		self.devolverLista().remove(puntero.position())
 	}
@@ -28,7 +35,6 @@ class Tablero{
 	method consultarLista(){
 		if(self.devolverLista().size() == 0){
 			game.addVisualIn(caraWin, game.at(0,16))
-			//game.say(carawin, "Ganaste")
 			self.figuraResuelta()
 			self.cartel()
 			game.start()
@@ -39,29 +45,27 @@ class Tablero{
 	method verificarIntentos(){
 		if (puntero.intentos() == 0){
 			game.addVisualCharacterIn(caraLose, game.at(0,16))
+			game.addVisualIn(cartel4, game.at(7,7))
 			game.start()
 		}
 	}
 	
-	//method unirListas()
 	method devolverLista()
 	
 	method figuraResuelta()
 	
 	method cartel()
 	
-	//method verificarListas(){
-	//	return self.devolverLista().filter({ l => l.size() == 1})
-	//}
-	
-	//method agregarTilde(){
-	//	self.verificarListas().forEach({l => self.crearTilde(l)})
+	method agregarTilde(x, y){
+		if(not self.comprobarLargo(x)){
+			game.addVisualIn(new TildeLargo(), game.at(x,20))
+		}
 		
-	//}
-	
-	//method crearTilde(posicion){
-	//	game.addVisualIn(new Tilde(), posicion)
-	//}
+		if(not self.comprobarAltura(y)){
+			game.addVisualIn(new TildeAltura(), game.at(0,y))
+		}
+		
+	}
 	
 }
 
@@ -83,11 +87,7 @@ class Tablero1 inherits Tablero{
 	method image() = "fondo1.png"
 	
 	method position() = game.at(0, 0)
-	
-//	override method unirListas(){
-	//	return self.posicionesCorrectas().flatten()
-	//}
-	
+		
 	override method devolverLista(){
 		return posicionesCorrectas
 	}
@@ -98,6 +98,15 @@ class Tablero1 inherits Tablero{
 	
 	override method cartel(){
 		game.addVisualIn(cartel1, game.at(7,17))
+	}
+	
+	override method comprobarLargo(x){
+		return posicionesCorrectas.any({p => p.x() == x})	
+	}
+	
+	override method comprobarAltura(y){
+		return posicionesCorrectas.any({p => p.y() == y})	
+	
 	}
 }
 
@@ -134,6 +143,14 @@ class Tablero2 inherits Tablero{
 	
 	override method cartel(){
 		game.addVisualIn(cartel2, game.at(7,17))
+	}
+	
+	override method comprobarLargo(x){
+		return posicionesCorrectas.any({p => p.x() == x})	
+	}
+	
+	override method comprobarAltura(y){
+		return posicionesCorrectas.any({p => p.y() == y})	
 	}
 }
 
@@ -175,6 +192,14 @@ class Tablero3 inherits Tablero{
 	
 	override method cartel(){
 		game.addVisualIn(cartel3, game.at(7,17))
+	}
+	
+	override method comprobarLargo(x){
+		return posicionesCorrectas.any({p => p.x() == x})	
+	}
+	
+	override method comprobarAltura(y){
+		return posicionesCorrectas.any({p => p.y() == y})	
 	}
 }
 
