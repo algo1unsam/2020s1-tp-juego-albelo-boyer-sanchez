@@ -1,5 +1,5 @@
 import wollok.game.*
-import menu.*
+import tableros.*
 
 object puntero{
 	var property position = game.at(5,15)
@@ -22,10 +22,8 @@ object puntero{
 		game.at(8,0), game.at(9,0), game.at(10,0), game.at(11,0), game.at(12,0), game.at(13,0),
 		game.at(14,0), game.at(15,0), game.at(16,0), game.at(17,0), game.at(18,0), game.at(19,0)]	
 	
-	method image() {
-	return "puntero2.png"
+	method image() = "puntero.png"
 	
-	}
 	
 	method puedeEliminarseDelTablero(){
 		return false
@@ -45,14 +43,6 @@ object puntero{
 			self.eliminarCruz()
 		}
 	}
-		//if(self.obtenerElementos().size() == 1){
-			//game.addVisualIn(new CasillaCruz(), self.position())	
-			
-	//	}else{
-		//	self.eliminarCruz()
-		//}
-		
-//	}
 	
 	method sePuedeEliminarAlgo(){
 		return self.obtenerElementos().any({c => c.puedeEliminarseDelTablero()})
@@ -60,8 +50,7 @@ object puntero{
 	
 	method cruz(){
 		if(self.obtenerElementos().size() == 1){
-			game.addVisualIn(new CasillaCruz(), self.position())	
-			
+			game.addVisualIn(new CasillaCruz(), self.position())		
 		}else{
 			self.eliminarCruz()
 		}
@@ -69,10 +58,8 @@ object puntero{
 	
 	method eliminarCruz(){
 		if(self.obtenerElementos().size() == 2 and self.sePuedeEliminarAlgo()){
-			
 			game.removeVisual(self.filtrarElementos())
-		}
-			
+		}	
 	}
 	
 	method obtenerElementos(){
@@ -81,7 +68,6 @@ object puntero{
 	
 	method filtrarElementos(){
 		return self.obtenerElementos().find({c => c.puedeEliminarseDelTablero()})
-
 	}
 	
 	method moverArriba(){
@@ -131,15 +117,15 @@ object puntero{
 	method consultarIntentos(){
 		game.say(self, "Tenés " + self.intentos().toString() + " intentos.")
 	}
-		
 	
+	method devolverListaDelTablero(){
+		return tablero.posicionesCorrectas()
+	}
 }
 
 class CasillaOscura{
 	
-	method image(){
-		return "casillaOscura.png"
-	}
+	method image() = "casillaOscura.png"
 	
 	method puedeEliminarseDelTablero(){
 		return false
@@ -147,11 +133,8 @@ class CasillaOscura{
 }
 
 class CasillaCruz{
-	//const position
 	
-	method image(){
-		return "cruz3.png"
-	}
+	method image() = "cruz.png"
 	
 	method puedeEliminarseDelTablero(){
 		return true
@@ -163,62 +146,9 @@ class CasillaCruz{
 }
 
 class TildeLargo{
-	method image(){
-		return "tildeL.png"
-	}
+	method image() = "tildeL.png"
 }
 
 class TildeAltura{
-	method image(){
-		return "tildeA.png"
-	}
-}
-
-object caraNormal{
-	method image() {
-	return "normal.png"
-	
-	}
-}
-
-object caraWin{
-	method image() {
-	return "win.png"
-	
-	}
-}
-
-object caraLose{
-	method image() {
-	return "lose.png"
-	
-	}
-}
-
-object cartel1{
-	method image() {
-	return "cartel1.png"
-	
-	}
-}
-
-object cartel2{
-	method image() {
-	return "cartel2.png"
-	
-	}
-}
-
-object cartel3{
-	method image() {
-	return "cartel3.png"
-	
-	}
-}
-
-object cartel4{
-	method image() {
-	return "cartel4.png"
-	
-	}
+	method image() = "tildeA.png"
 }

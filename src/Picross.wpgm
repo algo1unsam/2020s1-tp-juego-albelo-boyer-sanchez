@@ -1,6 +1,6 @@
 import wollok.game.*
 import elementos.*
-import menu.*
+import tableros.*
 
 
 program picross {
@@ -22,6 +22,8 @@ program picross {
 	keyboard.down().onPressDo{ puntero.moverAbajo()}
 	keyboard.left().onPressDo{ puntero.moverIzquierda()}
 	keyboard.right().onPressDo{ puntero.moverDerecha()}
+	
+	
 	
 	
 	game.start()
