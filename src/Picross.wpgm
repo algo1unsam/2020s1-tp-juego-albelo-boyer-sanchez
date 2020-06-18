@@ -14,7 +14,7 @@ program picross {
 	//TECLADO
 	keyboard.c().onPressDo{ puntero.pintar()}
 	keyboard.x().onPressDo{ puntero.ponerCruz()}
-	keyboard.space().onPressDo{ puntero.consultarIntentos()}
+	keyboard.space().onPressDo{ jugador.consultarIntentos()}
 	keyboard.num1().onPressDo{ jugador.cargarTablero1()}
 	keyboard.num2().onPressDo{ jugador.cargarTablero2()}
 	keyboard.num3().onPressDo{ jugador.cargarTablero3()}

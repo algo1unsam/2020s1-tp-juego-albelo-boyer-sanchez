@@ -156,10 +156,23 @@ class TableroPrueba inherits Tablero{
 object jugador{
 	var property tablero
 	
+	method image() = "imgJugador.png"
+	
+	method position() = game.at(3,20)
+	
+	method consultarIntentos(){
+		if(puntero.intentos() == 1){
+			game.say(self, "Tenés 1 intento.")
+		}else{
+		game.say(self, "Tenés " + puntero.intentos().toString() + " intentos.")
+		}
+	}
+	
 	method agregarElementos(){
 		game.addVisual(tablero)
 		game.addVisual(puntero)
 		puntero.tablero(tablero)
+		game.addVisual(self)
 	}
 	
 	method cargarTablero1(){

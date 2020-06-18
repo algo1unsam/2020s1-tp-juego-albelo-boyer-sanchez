@@ -114,10 +114,6 @@ object puntero{
 		intentos -= 1
 	}
 	
-	method consultarIntentos(){
-		game.say(self, "Tenés " + self.intentos().toString() + " intentos.")
-	}
-	
 	method devolverListaDelTablero(){
 		return tablero.posicionesCorrectas()
 	}
