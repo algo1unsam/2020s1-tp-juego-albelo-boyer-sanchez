@@ -1,6 +1,91 @@
+import elementos.*
+import tableros.*
+import wollok.game.*
 
-test "testX" {
+describe "Picross" {
+ 
+	fixture {
+		game.clear()
+		jugador.cargarTableroPrueba()
+	}
 
-	assert.that(true)
+	test "Pintar posicion correcta y sacar esa posición de la lista" {
+		
+		puntero.position(game.at(6,15))
+		puntero.pintar()
+		assert.equals(2, puntero.devolverListaDelTablero().size())
+	}
+	
+	test "Pintar celda incorrecta"{
+		
+		puntero.position(game.at(5,15))
+		puntero.pintar()
+		assert.equals(3, puntero.devolverListaDelTablero().size())
+		assert.equals(2, puntero.intentos())
+	}
+	
+	test "Perder todos los intentos"{
+		
+		puntero.position(game.at(5,15))
+		puntero.pintar()
+		puntero.position(game.at(5,12))
+		puntero.pintar()
+		puntero.position(game.at(5,13))
+		puntero.pintar()
+		assert.equals(3, puntero.devolverListaDelTablero().size())
+		assert.equals(0, puntero.intentos())
+	}
+	
+	test "Pintar todas las posiciones correctas y ganar sin perder intentos"{
+		puntero.position(game.at(6,15))
+		
+		puntero.pintar()
+		puntero.position(game.at(7,15))
+		puntero.pintar()
+		puntero.position(game.at(5,14))
+		puntero.pintar()
+		assert.that(puntero.devolverListaDelTablero().isEmpty())
+		assert.equals(3, puntero.intentos())
+	}
+	
+	test "El puntero no se sale del límite izquierdo"{
+		
+		puntero.position(game.at(5,15))
+		const x = puntero.position().x()
+		puntero.moverIzquierda()
+		assert.equals(x, puntero.position().x()) 
+	}
+	
+	test "El puntero no se sale del límite superior"{
+		
+		puntero.position(game.at(5,15))
+		const y = puntero.position().y()
+		puntero.moverArriba()
+		assert.equals(y, puntero.position().y()) 
+	}
+	
+	test "El puntero no se sale del límite derecho"{
+		
+		puntero.position(game.at(19,15))
+		const x = puntero.position().x()
+		puntero.moverDerecha()
+		assert.equals(x, puntero.position().x()) 
+	}
+	
+	test "El puntero no se sale del límite inferior"{
+		
+		puntero.position(game.at(5,1))
+		const y = puntero.position().y()
+		puntero.moverAbajo()
+		assert.equals(y, puntero.position().y()) 
+	}
+	
+	test "Comprobar tilde en la fila y columna"{
+		
+		puntero.position(game.at(5,14))
+		puntero.pintar()
+		assert.notThat(puntero.tablero().comprobarLargo(puntero.position().x()))
+		assert.notThat(puntero.tablero().comprobarAltura(puntero.position().y()))
+	}
 
 }
